@@ -1,0 +1,56 @@
+/** 
+ * 
+ */
+
+import io.sarl.core.DefaultContextInteractions
+import io.sarl.core.Initialize
+import io.sarl.core.Logging
+import io.sarl.core.Schedules
+
+/** 
+ * @author ina
+ * 
+ */
+agent Ping_Agent {
+	uses DefaultContextInteractions, Schedules, Logging
+	var count : Integer
+	var performance: Double
+	
+
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		
+		//HACER QUE JUEGUEN
+		performance = Math.random();
+		info("AgentePint Performance: "+ performance)
+		count = 0
+		in(2000)[sendPing]
+	}
+	
+	on Pong
+	{
+		in(1000)
+		[
+			
+			println("send ping " + count)
+			emit(new Ping(count))
+			count = count + 1
+		]
+	}
+	
+	def sendPing{
+		if(defaultSpace.participants.size > 1)
+		{
+			emit(new Ping(count))
+			count = count + 1
+		}
+		else
+		{
+			in(2000)[sendPing]
+		}
+	}
+	
+	
+
+}

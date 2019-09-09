@@ -1,0 +1,43 @@
+/** 
+ * 
+ */
+import io.sarl.core.AgentKilled
+import io.sarl.core.AgentSpawned
+import io.sarl.core.ContextJoined
+import io.sarl.core.ContextLeft
+import io.sarl.core.Destroy
+import io.sarl.core.Initialize
+import io.sarl.core.Logging
+import io.sarl.core.MemberJoined
+import io.sarl.core.MemberLeft
+import io.sarl.core.DefaultContextInteractions
+import io.sarl.core.Schedules
+
+/** 
+ * @author ina
+ * 
+ */
+agent Pong_Agent {
+	uses DefaultContextInteractions, Schedules, Logging
+
+	var performance : Double
+	
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		performance = Math.random();
+		info("AgentePint Performance: " + performance)
+	}
+
+	on Ping {
+
+		println("recieve ping " + occurrence.value)
+		println("send ping " + occurrence.value)
+		emit(new Pong(occurrence.value))
+		
+	}
+
+
+	
+
+}

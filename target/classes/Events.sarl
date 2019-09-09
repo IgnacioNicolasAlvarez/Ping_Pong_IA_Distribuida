@@ -1,0 +1,25 @@
+/** 
+ * 
+ */
+
+/** 
+ * @author ina
+ * 
+ */
+event Events
+
+event Ping{
+	var value : Integer
+	new (v: Integer)
+	{
+		value = v
+	}
+	}
+
+event Pong {
+	var value : Integer
+
+	new (v : Integer) {
+		value = v
+	}
+}
