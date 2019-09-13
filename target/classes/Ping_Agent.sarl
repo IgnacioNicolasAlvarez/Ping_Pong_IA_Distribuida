@@ -14,7 +14,8 @@ import io.sarl.core.Schedules
 agent Ping_Agent {
 	uses DefaultContextInteractions, Schedules, Logging
 	var count : Integer
-	var performance: Double
+	var performance : Double
+	
 	
 
 	on Initialize {
